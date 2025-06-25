@@ -1,0 +1,17 @@
+[
+  {
+    "classname": "Months",
+    "fields": {"public":"JANUARY", "public":"FEBRUARY", "public":"MARCH", "public":"APRIL", "public":"MAY", "public":"JUNE", "public":"JULY", "public":"AUGUST", "public":"SEPTEMBER", "public":"OCTOBER", "public":"NOVEMBER", "public":"DECEMBER", "private":"$VALUES"},
+    "methods": {"public":"values()", "public":"valueOf()", "private":"$values()"}
+  },
+  {
+    "classname": "Person",
+    "fields": {"private":"firstName", "private":"lastName", "private":"dayOfBirth", "private":"monthOfBirth", "private":"yearOfBirth"},
+    "methods": {"public":"getLastName()", "public":"setDayOfBirth()", "public":"getMonthOfBirth()", "public":"setMonthOfBirth()", "public":"setFirstName()", "public":"getDayOfBirth()", "public":"getFirstName()", "public":"getYearOfBirth()", "public":"setYearOfBirth()", "public":"setLastName()", "protected":"canEqual()", "public":"equals()", "public":"toString()", "public":"hashCode()", "public":"builder()"}
+  },
+  {
+    "classname": "Student",
+    "fields": {"private":"name", "private":"score"},
+    "methods": {"public":"getScore()", "public":"setScore()", "protected":"canEqual()", "public":"getName()", "public":"equals()", "public":"toString()", "public":"hashCode()", "public":"builder()", "public":"setName()"}
+  }
+]

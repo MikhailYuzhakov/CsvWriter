@@ -1,17 +1,24 @@
 package org.writer.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
+import lombok.*;
+import org.writer.CsvWriter;
+import org.writer.Writable;
 
 import java.util.List;
 
 @Data
 @Builder
-@AllArgsConstructor
+//@AllArgsConstructor
+@NoArgsConstructor
 public class Student {
-
+    @Writable.CsvField
     private String name;
 
+    @Writable.CsvField
     private List<String> score;
+
+    public Student(String name, List<String> score) {
+        this.name = name;
+        this.score = score;
+    }
 }
