@@ -10,8 +10,29 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
 
+/**
+ * Класс для записи объектов в JSON файл.
+ * <p>
+ * Пример использования:
+ * <pre>
+ * {@code
+ * List<MyClass> objects = ...;
+ * JsonWriter writer = new JsonWriter();
+ * writer.writeToFile("org.writer.model", "output.json");
+ * }
+ * </pre>
+ * </p>
+ */
 public class JsonWriter {
 
+    /**
+     * Записывает список объектов в CSV файл. Использует аннотации {@link Writable.CsvField}
+     * для определения структуры CSV.
+     *
+     * @param classPath Путь к директории с экспортируемыми классами.
+     * @param outputPath Имя файла для записи результатов
+     * @throws IllegalArgumentException Если переданы некорректные параметры
+     */
     public void writeToFile(String classPath, String outputPath) {
         try {
             List<Class<?>> classList = getClassesInPackage(classPath);
@@ -35,6 +56,11 @@ public class JsonWriter {
         }
     }
 
+    /**
+     * Метод добавляет в JSON строку информацию о полях класса.
+     * @param json Ссылка на StringBuilder в который будет формироваться JSON строка.
+     * @param fields Поля класса.
+     */
     void addToJsonClassFields(StringBuilder json, Field[] fields) {
         json.append("    \"fields\": {");
         for (Field field : fields) {
@@ -47,6 +73,11 @@ public class JsonWriter {
         json.append("},\n");
     }
 
+    /**
+     * Метод добавляет в JSON строку информацию о методах класса.
+     * @param json Ссылка на StringBuilder в который будет формироваться JSON строка.
+     * @param methods Методы класса.
+     */
     void addToJsonClassMethods(StringBuilder json, Method[] methods) {
         json.append("    \"methods\": {");
         for (Method method : methods) {
@@ -59,6 +90,11 @@ public class JsonWriter {
         json.append("}\n");
     }
 
+    /**
+     * Метод возвращает список всех классов, найденных в заданной директории.
+     * @param packageName Путь к Classpath.
+     * @return Список классов в директории.
+     */
     List<Class<?>> getClassesInPackage(String packageName) throws Exception {
         List<Class<?>> classes = new ArrayList<>();
         ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
@@ -79,6 +115,11 @@ public class JsonWriter {
         return classes;
     }
 
+    /**
+     * Метод возвращает текстовое представление модификаторов доступа.
+     * @param modifiers Модификаторы доступа к целочисленном формате.
+     * @return Модификатор доступа в текстовом представлении.
+     */
     public String getAccessModifier(int modifiers) {
         if (Modifier.isPrivate(modifiers)) return "private";
         if (Modifier.isProtected(modifiers)) return "protected";
